@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transporte Gonzalito | El Rey del Asfalto</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- VARIABLES GLOBALES (PALETA DE COLORES DE LA UNIDAD) --- */
+        :root {
+            --rojo-colectivo: #A61F2D;
+            --azul-paraguay: #0F4C81;
+            --dorado: #D4AF37;
+            --oscuro: #0067bb;
+            --blanco: #FFFFFF;
+            --gris-claro: #EEEEEE;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-color: var(--gris-claro);
+            color: var(--oscuro);
+            line-height: 1.6;
+        }
+
+        /* --- MENÚ DE NAVEGACIÓN --- */
+        header {
+            background-color: var(--oscuro);
+            padding: 15px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 3px solid var(--dorado);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-text {
+            color: var(--blanco);
+            font-weight: 900;
+            font-size: 1.4rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .logo-text span {
+            color: var(--rojo-colectivo);
+        }
+
+        /* --- SECCIÓN PRINCIPAL (HERO) --- */
+        .hero {
+            background: linear-gradient(135deg, #0067bb 0%, #0067bb 100%);
+            color: var(--blanco);
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 5px;
+            background: linear-gradient(to right, var(--azul-paraguay), var(--blanco), var(--rojo-colectivo));
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .logo-welcome {
+            width: 260px;
+            height: auto;
+            max-width: 100%;
+            border-radius: 50%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            border: 4px solid var(--dorado);
+            background-color: white;
+        }
+
+        .hero-text h1 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            color: #cccccc;
+            margin-bottom: 35px;
+            max-width: 700px;
+        }
+
+        /* --- BOTÓN ESTILO SLIDER REVOLUTION PREMIUM --- */
+        .btn-premium {
+            display: inline-block;
+            background-color: #FFFFFF;
+            color: #000000;
+            font-size: 15px;
+            font-weight: 700;
+            text-transform: uppercase;
+            text-decoration: none;
+            letter-spacing: 1px;
+            padding: 14px 40px;
+            border-radius: 30px; /* Bordes redondeados idénticos a tu referencia */
+            border: 2px solid transparent;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-premium:hover {
+            background-color: var(--rojo-colectivo);
+            color: #FFFFFF;
+            border-color: var(--rojo-colectivo);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(166, 31, 45, 0.5);
+        }
+
+        .btn-premium .flecha {
+            margin-left: 12px;
+            font-weight: 900;
+        }
+
+        /* --- SECCIÓN NUESTRA FLOTA (TUS IMÁGENES) --- */
+        .flota {
+            max-width: 1200px;
+            margin: 70px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .flota h2 {
+            font-size: 2.2rem;
+            font-weight: 900;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 12px;
+        }
+
+        .flota h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 25%; width: 50%; height: 4px;
+            background-color: var(--rojo-colectivo);
+        }
+
+        .grid-flota {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .flota-card {
+            background-color: var(--blanco);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border: 1px solid #dddddd;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .flota-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .flota-card img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover; /* Recorta la foto proporcionalmente sin deformarla */
+            display: block;
+            border-bottom: 4px solid var(--azul-paraguay);
+        }
+
+        .flota-card.color-rojo img {
+            border-bottom-color: var(--rojo-colectivo);
+        }
+
+        .flota-card.color-dorado img {
+            border-bottom-color: var(--dorado);
+        }
+
+        .flota-card-info {
+            padding: 20px;
+        }
+
+        .flota-card-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .flota-card-info p {
+            font-size: 0.95rem;
+            color: #53bcec;
+        }
+
+        /* --- SECCIÓN SERVICIOS --- */
+        .servicios {
+            max-width: 1200px;
+            margin: 70px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .servicios h2 {
+            font-size: 2.2rem;
+            font-weight: 900;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 12px;
+        }
+
+        .servicios h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 25%; width: 50%; height: 4px;
+            background-color: var(--rojo-colectivo);
+        }
+
+        .grid-servicios {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background-color: var(--blanco);
+            padding: 35px 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-top: 6px solid var(--azul-paraguay);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            margin-bottom: 15px;
+            color: var(--oscuro);
+            font-weight: 700;
+        }
+
+        /* --- CONTACTO DESTACADO --- */
+        .contacto-recuadro {
+            background-color: var(--blanco);
+            padding: 45px 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            border: 2px dashed var(--dorado);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--oscuro);
+            color: #b3b3b3;
+            text-align: center;
+            padding: 35px 20px;
+            font-size: 0.9rem;
+            border-top: 1px solid #333333;
+        }
+
+        footer p span {
+            color: var(--blanco);
+            font-weight: 700;
+        }
+
+        /* --- BOTÓN FLOTANTE --- */
+        .btn-flotante {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background-color: #25D366;
+            color: white;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            box-shadow: 3px 3px 15px rgba(0,0,0,0.4);
+            z-index: 9999;
+            text-decoration: none;
+            transition: transform 0.2s;
+        }
+        
+        .btn-flotante:hover {
+            transform: scale(1.1);
+        }
+
+        /* --- RESPONSIVE ADJUSTMENTS --- */
+        @media (min-width: 768px) {
+            .hero-container {
+                flex-direction: row-reverse;
+                justify-content: space-around;
+                text-align: left;
+            }
+            .hero-text {
+                max-width: 650px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo-text">GONZALITO<span>.</span></div>
+            <a href="https://wa.me/595972488815?text=Hola%20Gonzalito!%20Necesito%20un%20flete." target="_blank" class="btn-premium" style="font-size: 13px; padding: 10px 25px; border-radius: 30px;">
+                Pedir Flete <span class="flecha">&gt;</span>
+            </a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-container">
+            <img src="logo_gonzalito.png" alt="Logo Transporte Gonzalito" class="logo-welcome">
+            
+            <div class="hero-text">
+                <h1>TRANSPORTE GONZALITO</h1>
+                <p>Línea 2 - San Lorenzo. Servicio de Delivery Express y fletes con la confianza y el estilo único del Rey del asfalto.</p>
+                <a href="https://wa.me/595972488815?text=Hola!%20Quiero%20hacer%20una%20consulta%20por%20un%20servicio." target="_blank" class="btn-premium">
+                    Enviar WhatsApp <span class="flecha">&gt;</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="servicios">
+        <h2>Nuestros Servicios</h2>
+        <div class="grid-servicios">
+            <div class="card">
+                <h3>Delivery Express</h3>
+                <p>Envíos rápidos, seguros y directos en San Lorenzo y alrededores. Tu carga llega a tiempo, garantizado.</p>
+            </div>
+            <div class="card" style="border-top-color: var(--rojo-colectivo);">
+                <h3>Fletes y Encomiendas</h3>
+                <p>Llevamos mercaderías y cargas especiales con el cuidado que se merecen. Capacidad y confianza en cada viaje.</p>
+            </div>
+            <div class="card" style="border-top-color: var(--dorado);">
+                <h3>Atención Personalizada</h3>
+                <p>Trato directo con el dueño. Nos adaptamos a tus horarios y necesidades específicas de logística.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="flota">
+        <h2>COLECTIVOS GONZALITO</h2>
+        <div class="grid-flota">
+            <div class="flota-card">
+                <img src="collage.1.jpeg" alt="Unidad Transporte Gonzalito">
+                <div class="flota-card-info">
+                    <h3>El Rey del Asfalto</h3>
+                    <p>Potencia y estilo listos para cualquier tipo de flete o traslado logístico.</p>
+                </div>
+            </div>
+            <div class="flota-card color-rojo">
+                <img src="collage.2.jpeg" alt="Interior Unidad Transporte Gonzalito">
+                <div class="flota-card-info">
+                    <h3>Capacidad Máxima</h3>
+                    <p>Espacio amplio, 39 asientos, cuidado y acondicionado para encomiendas de volumen especial.</p>
+                </div>
+            </div>
+            <div class="flota-card color-dorado">
+                <img src="collage.3.jpeg" alt="Flota Línea 2 San Lorenzo">
+                <div class="flota-card-info">
+                    <h3>Presencia y Confianza</h3>
+                    <p>Respaldando cada operación en San Lorenzo y cercanías.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     <section class="flota">
+        <h2>GRUA GONZALITO</h2>
+        <div class="grid-flota">
+            <div class="flota-card">
+                <img src="collage.4.jpeg" alt="Grúa Gonzalito - Traslados en todo el país">
+                <div class="flota-card-info">
+                    <h3>Auxilio las 24 Horas</h3>
+                    <p>Asistencia mecánica y traslado seguro de vehículos en San Lorenzo, Central y todo el territorio nacional.</p>
+                </div>
+            </div>
+            <div class="flota-card color-rojo">
+                <img src="collage.5.jpeg" alt="Grúa Gonzalito - Equipamiento de primer nivel">
+                <div class="flota-card-info">
+                    <h3>Capacidad y Seguridad</h3>
+                    <p>Equipada con plataforma reforzada y sistemas de sujeción de alta resistencia para cuidar tu vehículo en todo el viaje.</p>
+                </div>
+            </div>
+            <div class="flota-card color-dorado">
+                <img src="collage.6.jpeg" alt="Grúa Gonzalito - Confianza en ruta">
+                <div class="flota-card-info">
+                    <h3>Respuesta Inmediata</h3>
+                    <p>Llegamos rápido a donde estés. Un servicio con la seriedad, presencia y confianza que te da Gonzalito en la ruta.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="max-width: 800px; margin: 70px auto; padding: 0 20px; text-align: center;">
+        <div class="contacto-recuadro">
+            <h3 style="font-size: 1.7rem; margin-bottom: 10px; font-weight: 700; text-transform: uppercase;">¿Necesitás mover tu carga ahora mismo?</h3>
+            <p style="margin-bottom: 25px; color: #555555; font-size: 1.05rem;">Hacé clic abajo para coordinar precio y horario de manera inmediata.</p>
+            <p style="font-size: 1.5rem; font-weight: 900; color: var(--rojo-colectivo); margin-bottom: 30px; letter-spacing: 1px;">📞 +595 972 488 815</p>
+            <a href="https://wa.me/595972488815?text=Hola%20Gonzalito!%20Necesito%20un%20flete." target="_blank" class="btn-premium" style="background-color: var(--oscuro); color: var(--blanco);">
+                Cotizar ahora <span class="flecha">&gt;</span>
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 <span>Transporte Gonzalito</span> - San Lorenzo, Paraguay.</p>
+        <p>Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+</html>
